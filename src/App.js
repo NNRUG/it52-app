@@ -6,7 +6,7 @@ import Navigator from './containers/Navigator';
 
 const App = () =>
     <Provider store={store}>
-        <Navigator/>
+      <Navigator />
     </Provider>;
 
 export default App;

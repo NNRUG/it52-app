@@ -15,7 +15,7 @@ function mapStateToProps(state) {
     return {
         index: state.navigation.index,
         routes: state.navigation.routes
-    };    
+    };
 }
 
 class Navigation extends Component {
@@ -49,5 +49,3 @@ class Navigation extends Component {
 }
 
 export default connect(mapStateToProps, {push, pop})(Navigation);
-
-
