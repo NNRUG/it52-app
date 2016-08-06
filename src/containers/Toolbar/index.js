@@ -2,31 +2,29 @@ import {
   Image,
   ScrollView,
   StyleSheet,
+  Animated,
   Text,
   View
 } from 'react-native';
 
-import { EventView as styles } from '../../constants/styles';
+import { Toolbar as styles } from '../../constants/styles';
 import { autobind } from "core-decorators";
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 @connect(state => ({
-  events:  state.events.events,
-  selectedId: state.events.selectedId
+  ...state
 }))
 
 @autobind
-export default class EventView extends Component {
+export default class Toolbar extends Component {
   render() {
     let {events, selectedId} = this.props;
     let event = events[selectedId];
     return (
-      <View style={styles.container}>
-        <Text>{event.title}</Text>
-        <Image source={{uri: event.image_url}}/>
-        <Text>{event.description}</Text>
-      </View>
+      <Animated.View style={styles.container}>
+
+      </Animated.View>
     );
   }
 }

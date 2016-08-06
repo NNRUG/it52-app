@@ -1,15 +1,29 @@
 // Common styles go here, including constants for colors, common font settings, etc
 import {
-    StyleSheet
+  StyleSheet
 } from 'react-native';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        backgroundColor: '#F5FCFF'
-    }    
+const EventView = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: '#F5FCFF'
+  }
 });
 
-export default styles; 
+const Toolbar = StyleSheet.create({
+  container: {
+    justifyContent: 'flex-start',
+    backgroundColor: '#797979',
+    flexDirection: 'row',
+    alignItems: 'center',
+    elevation: 4,
+    height: 50,
+  }
+});
+
+export {
+  EventView,
+  Toolbar
+}

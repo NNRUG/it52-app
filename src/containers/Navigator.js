@@ -2,36 +2,40 @@ import { Text, NavigationExperimental } from 'react-native';
 import React, { Component } from 'react';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
+const { Header } = NavigationExperimental;
+
 import {push, pop} from '../redux/modules/navigation';
 import { autobind } from "core-decorators";
 import {connect} from 'react-redux';
+
 import EventList from './EventList';
 import EventView from './EventView';
+import Toolbar from "./Toolbar";
 
 @connect(state => {
   return {
     index: state.navigation.index,
     routes: state.navigation.routes
   };
-}, {push, pop})
+}, { push, pop })
 
 @autobind
 export default class Navigation extends Component {
   render() {
+    var { pop, index, routes } = this.props;
+
     var props = {
-      onNavigateBack: this.props.pop,
-      renderScene: this._renderScene,
-      navigationState: {
-        index: this.props.index,
-        routes: this.props.routes
-      }
+      navigationState: { index, routes },
+      renderOverlay: () => <Toolbar />,
+      renderScene: this.routeRender,
+      onNavigateBack: pop
     };
 
     return <NavigationCardStack {...props} />
   }
 
-  _renderScene(sceneProps){
-    let {index, routes} = this.props;
+  routeRender(sceneProps){
+    let { index, routes } = this.props;
     let sceneType = routes[index].type;
     switch(sceneType) {
       case 'eventList': return <EventList/>;

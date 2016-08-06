@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import { fetchEvents } from '../../redux/modules/events';
-import styles from '../../constants/styles';
+import { EventView as styles } from '../../constants/styles';
 import { autobind } from "core-decorators";
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
