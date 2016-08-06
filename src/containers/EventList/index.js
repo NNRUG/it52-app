@@ -1,43 +1,39 @@
-import React, { Component } from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    View
+  ScrollView,
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
+
+import { fetchEvents } from '../../redux/modules/events';
+import styles from '../../constants/styles';
+import { autobind } from "core-decorators";
+import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Event from './Event';
-import {fetchEvents} from '../../redux/modules/events';
-import styles from '../../constants/styles';
 
-function mapStateToProps(state) {
-    return {
-        events:  state.events.events,
-        loading: state.events.loading,
-        error:   state.events.error 
-    }    
+@connect(state => ({
+  loading: state.events.loading,
+  events:  state.events.events,
+  error:   state.events.error
+}), { fetchEvents })
+
+@autobind
+export default class EventList extends Component {
+  componentDidMount() {
+    this.props.fetchEvents();
+  }
+
+  render() {
+    let events = this.props.events.map((event, id) => <Event key={event.id} event={event} id={id} />);
+    let loading = <Text>Loading...</Text>;
+
+    return (
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={{alignItems: 'stretch'}}>
+          {this.props.loading ? loading : events}
+        </ScrollView>
+      </View>
+    );
+  }
 }
-
-class EventList extends Component {
-    componentDidMount() {
-        this.props.fetchEvents();
-    }
-    
-    render() {
-        return (
-            <View style={styles.container}>
-                <ScrollView contentContainerStyle={{alignItems: 'stretch'}}>
-                    {this.props.loading
-                        ? <Text>Loading...</Text>
-                        : this.props.events.map((event,id) => 
-                            <Event key={event.id} 
-                                   event={event}
-                                   id={id}/>
-                        )}
-                </ScrollView>
-            </View>
-        );
-    }
-}
-
-export default connect(mapStateToProps, {fetchEvents})(EventList);
