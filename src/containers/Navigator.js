@@ -1,9 +1,9 @@
-import { Text, NavigationExperimental } from 'react-native';
+import { Text, NavigationExperimental, Image } from 'react-native';
 import React, { Component } from 'react';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
-const { Header } = NavigationExperimental;
 
+import { Layout as styles } from "../constants/styles";
 import {push, pop} from '../redux/modules/navigation';
 import { autobind } from "core-decorators";
 import {connect} from 'react-redux';
@@ -26,7 +26,7 @@ export default class Navigation extends Component {
 
     var props = {
       navigationState: { index, routes },
-      renderOverlay: () => <Toolbar />,
+      renderOverlay: this.renderToolbar,
       renderScene: this.routeRender,
       onNavigateBack: pop
     };
@@ -34,13 +34,27 @@ export default class Navigation extends Component {
     return <NavigationCardStack {...props} />
   }
 
+  renderToolbar(props) {
+    return <Toolbar overlayProps={props} />;
+  }
+
   routeRender(sceneProps){
     let { index, routes } = this.props;
     let sceneType = routes[index].type;
+
+    var view;
     switch(sceneType) {
-      case 'eventList': return <EventList/>;
-      case 'event': return <EventView/>;
-      default: return <Text>Invalid route</Text>;
+      case 'eventList':
+        view = <EventList/>;
+        break;
+      case 'event':
+        view = <EventView/>;
+        break;
+      default:
+        view = <Text>Invalid route</Text>;
+        break;
     }
+
+    return <Image source={require('../assets/background.png')} style={styles.backgroundImage}>{view}</Image>;
   }
 }
