@@ -1,5 +1,9 @@
-import React from 'react';
-import {AppRegistry} from 'react-native';
-import App from './src/App';
+/**
+ * @flow
+ */
 
-AppRegistry.registerComponent('it52app', () => App);
+import { AppRegistry } from 'react-native'
+import React, { Component } from 'react'
+import BootstrapApp from 'BootstrapApp'
+
+AppRegistry.registerComponent('it52app', () => BootstrapApp);
