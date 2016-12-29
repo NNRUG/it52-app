@@ -3,6 +3,7 @@
  */
 
 import LinearGradient from 'react-native-linear-gradient'
+import EventPreview from 'ComponentEventPreview'
 import { routePush } from 'actionsNavigation'
 import Button from 'ComponentGradientButton'
 import { anotherPage } from 'configPages'
@@ -47,17 +48,17 @@ class HomePage extends Component {
   }
 
   render() {
-    var { loading } = this.props.events
+    var { loading, past } = this.props.events
 
-    if (loading) return (
-      <View style={styles.root__loading}>
-        <Text style={styles.root__loading__text}>Загружаем события...</Text>
-      </View>
-    ) 
-
-    else return (
-      <ScrollView contentContainerStyle={styles.root} ref={(scroll) => { this.scroll = scroll }}>
-        
+    return (
+      <ScrollView contentContainerStyle={styles.root}>
+        {loading ? (
+          <View style={styles.root__loading}>
+            <Text style={styles.root__loading__text}>Загружаем события...</Text>
+          </View>
+        ) : past.map((event) => (
+          <EventPreview key={`event-show-${event.id}`} event={event} />
+        ))}
       </ScrollView>
     )
   }

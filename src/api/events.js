@@ -20,7 +20,7 @@ export function _loadAndConvertImage(url) {
     })
     
     .then((base64image) => Promise.all([
-      `data:${url.split('.').pop()};base64,${base64image}`,
+      `data:image/${url.split('.').pop()};base64,${base64image}`,
       fs.unlink(path)
     ]))
     

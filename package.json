@@ -20,7 +20,7 @@
 		"react-native": "0.39.2",
 		"react-native-fetch-blob": "^0.10.0",
 		"react-native-linear-gradient": "^1.6.0",
-		"react-native-markdown-syntax": "^0.1.0",
+		"react-native-maps": "^0.12.2",
 		"react-native-swiper": "^1.5.4",
 		"react-native-vector-icons": "^3.0.0",
 		"react-redux": "^5.0.1",
@@ -29,6 +29,7 @@
 		"redux-actions": "^1.2.0",
 		"redux-logger": "^2.7.4",
 		"redux-thunk": "^2.1.0",
+		"remarkable": "^1.7.1",
 		"shitty-qs": "^1.0.1"
 	},
 	"devDependencies": {

@@ -3,13 +3,12 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   root: {
-    ...flex('column', 'center', null),
-    flex: 1
+    ...padding(60, 0)
   },
 
   root__loading: {
     ...flex('row', 'center', 'center'),
-    flex: 1
+    height: 400
   },
 
   root__loading__text: {
@@ -18,17 +17,5 @@ export default StyleSheet.create({
     fontFamily: 'Rubik',
     fontWeight: '300',
     fontSize: 25,
-  },
-
-  button: {
-    ...flex('row', 'center', 'center'),
-    ...padding(12, 18),
-    borderRadius: 8
-  },
-
-  button__text: {
-    backgroundColor: 'transparent',
-    color: '#FFF',
-    fontSize: 16
   }
 })

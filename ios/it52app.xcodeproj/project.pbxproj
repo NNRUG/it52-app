@@ -49,6 +49,7 @@
 		0BB9E6ABF4864693B457249D /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C0480C057C14684B2312BF7 /* Rubik-Medium.ttf */; };
 		218495E2CEB44AE490BAE72A /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91990C2679824293A1A1B2C5 /* Rubik-MediumItalic.ttf */; };
 		A0F911B4802D4F65ADD9038E /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2C2B44AD6B44317B50B4183 /* Rubik-Regular.ttf */; };
+		0EF6AA8782C5428DA6F1A0CD /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A68844102684455195FE99E5 /* libAirMaps.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +199,8 @@
 		3C0480C057C14684B2312BF7 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; name = "Rubik-Medium.ttf"; path = "../Fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		91990C2679824293A1A1B2C5 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Rubik-MediumItalic.ttf"; path = "../Fonts/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D2C2B44AD6B44317B50B4183 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; name = "Rubik-Regular.ttf"; path = "../Fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2309F721AD784E1F938AA049 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A68844102684455195FE99E5 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +233,7 @@
 				1090916C6F0B4432BA224292 /* libRealmReact.a in Frameworks */,
 				B4517114D127443A831E584B /* libc++.tbd in Frameworks */,
 				2D8B093A5FA4487982FB16B3 /* libz.tbd in Frameworks */,
+				0EF6AA8782C5428DA6F1A0CD /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +370,7 @@
 				6844F0A9DCEC4D848C919F82 /* BVLinearGradient.xcodeproj */,
 				F0441BBC42464037A67B089C /* RNVectorIcons.xcodeproj */,
 				3923EFB6C10948EFB6959F8A /* RealmReact.xcodeproj */,
+				2309F721AD784E1F938AA049 /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -761,6 +766,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -777,6 +783,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/it52app.app/it52app";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -862,6 +869,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -906,6 +914,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
