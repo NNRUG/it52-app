@@ -44,14 +44,12 @@ class WelcomePage extends Component {
   render() {
     return (
       <View style={styles.root}>
+        <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.header}>
-          <Text style={styles.header__text}>IT52</Text>
-        </View>
-        <View style={styles.subheader}>
-          <Text style={styles.subheader__text}>Нижегородское IT сообщество</Text>
+          <Text style={styles.header__text}>Нижегородское IT Сообщество</Text>
         </View>
 
-        <Button styles={styles.button} onPress={this.onDone} text="Начать Сейчас" />
+        <Button colors={['#9E9E9E', '#9E9E9E']} styles={styles.button} onPress={this.onDone} text="Начать Сейчас" />
       </View>
     )
   }

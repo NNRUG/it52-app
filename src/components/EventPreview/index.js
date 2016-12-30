@@ -2,76 +2,56 @@
  * @providesModule ComponentEventPreview
  */
 
-import { TouchableOpacity, Text, StyleSheet, View, Image, WebView } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import LinearGradient from 'react-native-linear-gradient'
-import { flex, margin, padding } from 'styleMixins'
 import Button from 'ComponentGradientButton'
+import { getContent } from 'utilsMarkdown'
 import React, { Component } from 'react'
-import fontStyle from './fontStyleBin'
-import Remarkable from 'remarkable'
 
-var markdown = new Remarkable({
-  typographer:  true
-});
+import { TouchableOpacity, Text, View, Image, WebView } from 'react-native'
+import styles from './styles'
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: '#FFF',
-    overflow: 'hidden',
-    ...margin(20, 15),
-    borderRadius: 8,
-  },
+/* moment load & preset russian locale */
+import moment from 'moment'
+import 'moment/locale/ru'
+moment.locale('ru')
 
-  image: {
-    height: 250
-  },
-
-  title: {
-    borderBottomWidth: 1,
-    textAlign: 'center',
-    fontFamily: 'Rubik',
-    fontWeight: '300',
-    marginTop: 10,
-    fontSize: 17,
-  },
-
-  preview: {
-    borderColor: 'rgba(0,0,0, 0.1)',
-    ...margin(10, 10),
-    borderTopWidth: 1,
-    paddingTop: 15,
-    height: 215
-  },
-
-  preview__body: {
-    height: 200
-  }
-})
-
-export default EventPreview = ({ onPress, event: { title, description, id, image, participants } }) => (
+export default EventPreview = ({ onPress, event: { title, description, id, image, participants, started_at } }) => (
   <View style={styles.root}>
-    <Image source={{ uri: image }} style={styles.image} resizeMode="cover" />
-    <Text style={styles.title}>{title}</Text>
+    <Image
+      source={{ uri: image }}
+      style={styles.image}
+      resizeMode="cover"
+    />
+    
+    <View style={styles.title}>
+      <Text style={styles.title__text}>
+        {title.toUpperCase()}
+      </Text>
+      
+      <View style={styles.started}>
+        <Icon name="date-range" color="rgba(0,0,0, 0.75)" size={16} />
+        <Text style={styles.started__text}>{moment(started_at).format('LL')}</Text>
+      </View>
+    </View>
 
     <View style={styles.preview}>
-      <WebView scrollEnabled={false} source={{html: `
-        <style>
-          ${fontStyle}
-
-          * {
-            color: rgba(0,0,0, 0.75);
-            font-family: rubiklight;
-          }
-        </style>
-
-        <div class="main">
-          ${markdown.render(description)}
-        </div>
-      `}} style={styles.preview__body} />
+      <WebView
+        source={{html: getContent(description)}}
+        style={styles.preview__body}
+        scrollEnabled={false}
+      />
     </View>
+    
     <View style={styles.participants}>
       <Text style={styles.participants__text}></Text>
     </View>
-    <Button onPress={onPress} text="Смотреть" />
+    
+    <Button
+      colors={['#b15753', '#cc554f']}
+      styles={styles.button}
+      onPress={onPress}
+      text="Смотреть"
+    />
   </View>
 )

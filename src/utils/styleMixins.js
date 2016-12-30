@@ -33,3 +33,15 @@ export function flex(direction = null, alignItems = null, justifyContent = null)
   if (alignItems) style.alignItems = alignItems;
   return style;
 }
+
+export function boxShadow(color, width, height, opacity, radius) {
+  return {
+    shadowOpacity: opacity,
+    shadowRadius: radius,
+    shadowColor: color,
+    shadowOffset: {
+      height,
+      width,
+    }
+  }
+}

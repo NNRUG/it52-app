@@ -11,6 +11,9 @@ import styles from './styles'
 
 import {
   NavigationExperimental,
+  Dimensions,
+  StatusBar,
+  Image,
   View,
   Text
 } from 'react-native'
@@ -22,16 +25,20 @@ const {
 } = NavigationExperimental
 
 /* Pages */ 
+import EventDetails from 'ContainerEventDetails'
 import Another from 'ContainerAnother'
 import Welcome from 'ContainerWelcome'
 import Home from 'ContainerHome'
 
 import {
+  eventDetailsPage,
   welcomePage,
   anotherPage,
   homePage,
   keyPage
 } from "configPages"
+
+const { height, width } = Dimensions.get('window')
 
 @connect((state) => ({
   ...state
@@ -57,10 +64,15 @@ class Navigator extends Component {
             />
 
             <NavigationHeader {...props}
+              style={styles.navigationHeader}
 							onNavigateBack={backPage}
 							renderTitleComponent={(props) => {
 								const title = props.scene.route.title
-								return <NavigationHeader.Title>{title}</NavigationHeader.Title>
+								return (
+                  <NavigationHeader.Title>
+                    <Text style={styles.navigationHeader__title}>{title}</Text>
+                  </NavigationHeader.Title>
+                )
               }}
             />
           </View>
@@ -72,11 +84,25 @@ class Navigator extends Component {
   _renderScene({ scene }) {
     const { route } = scene
 
-    return objectSwitch(route.key, {
+    var contentView = objectSwitch(route.key, {
+      [keyPage(eventDetailsPage)]: <EventDetails type={route.eventType} index={route.eventIndex} />,
       [keyPage(anotherPage)]: <Another />,
       [keyPage(welcomePage)]: <Welcome />,
       [keyPage(homePage)]: <Home />,
     })
+
+    var props = {
+      source: require('../../assets/backgroundDefault.png'),
+      style: { height, width },
+      resizeMode: 'cover'
+    }
+
+    return (
+      <Image {...props}>
+        <StatusBar barStyle="light-content" />
+        {contentView}
+      </Image>
+    )
   }
 }
 
